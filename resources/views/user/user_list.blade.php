@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('adminlte::page')
 
-    <title>ユーザー一覧</title>
+@section('title', 'UserList')
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+@section('content_header')
+    <h1>ユーザー一覧</h1>
+@stop
 
-</head>
-<body>
-    <!--  -->
-    <div class="container">
-    <div>
-        <h1 class="center-block bg-success text-white text-center" style="auto">ユーザー一覧 <small>USER LIST</small></h1>
-    </div>
+@section('content')
+<div>
     <div>
         <h4 class="center-block bg-warning  text-white bg-dark" style="auto">総件数{{ $users -> total() }}件</h4>
     </div>
@@ -24,20 +16,31 @@
         <p class="bg-light text-dark">現在ログイン中のユーザー:<strong>{{ Auth::user()->name }}({{ Auth::user()->email }})</strong>さん</p>
         @endauth
 
+        @if(session('message'))
+                <div class="alert alert-success">{{session('message')}}</div>
+            @endif
+            
         <div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ユーザーID</th>
-                    <th>名前</th>
-                    <th>メールアドレス</th>
-                    <th>権限</th>
-                    <th>更新日</th>
-                    <th>ユーザー編集</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($users as $user)
+        <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">ユーザー一覧</h3>
+                </div>
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>ユーザーID</th>
+                                <th>名前</th>
+                                <th>メールアドレス</th>
+                                <th>権限</th>
+                                <th>更新日</th>
+                                <th>ユーザー編集</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($users as $user)
                     <tr>
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
@@ -54,14 +57,20 @@
 </svg> 編集 </button></td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
-        {!! $users->render() !!}
-</div>
+                        </tbody>
+                    </table>
+                    {!! $users->render() !!}
+                </div>
+            </div>
         </div>
+    </div>
 
+@stop
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+@section('css')
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+@stop
 
-</body>
-</html>
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

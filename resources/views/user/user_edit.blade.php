@@ -1,31 +1,18 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('adminlte::page')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('title', 'UserEdit')
 
-    <title>ユーザー編集</title>
+@section('content_header')
+    <h1>ユーザー編集</h1>
+@stop
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
-</head>
-
-<body>
-<div class="container">
-<h1 class="center-block bg-success text-white text-center" style="auto">ユーザー編集</h1>
-<h2>「{{$user->name}}さん」現在の権限:@if($user->role === 1) 利用者 @else 管理者 @endif</h2>
-
-    <!-- ↓↓ログイン中のユーザーの名前を取得して表示する↓  -->
-    @auth
-    <p class="bg-light text-dark">現在ログイン中のユーザー:<strong>{{ Auth::user()->name }}({{ Auth::user()->email }})</strong>さん</p>
-    @endauth
-
+@section('content')
+<div class="row">
+    <div class="col-md-10">
+<h2>「{{$user->name}}さん」の編集（現在の権限:@if($user->role === 1) 利用者 @else 管理者 @endif）</h2>    
+<!-- エラーメッセージ -->
 @if ($errors->any())
-<div class="text-danger">
+<div class="alert alert-danger">
   <ul>
     @foreach ($errors->all() as $error)
     <li>{{ $error }}</li>
@@ -34,11 +21,21 @@
 </div>
 @endif
 
+<div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">ユーザー編集</h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-append">
+                                <a href="{{ url('/user') }}" class="btn btn-secondary">ユーザー一覧に戻る</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
     <form action="/user/update" method="post">
         @CSRF
         <input class="form-control" type="hidden" name="id" value="{{$user->id}}" >
-
-        <button type="button" class="btn btn-secondary" onclick="location.href='/user'">ユーザー一覧に戻る</button>
 
         <div class="form-group">
             <label for="name">名前</label>
@@ -69,13 +66,17 @@
   <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 </svg>削除</button></a>
 
-</div>
-
-        
-
-        
     </form>
+</div>
+    </div>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
-</html>
+@stop
+
+@section('css')
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

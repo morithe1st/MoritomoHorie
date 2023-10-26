@@ -53,7 +53,7 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return redirect('/user');
+        return redirect('/user')->with('message', 'ユーザー情報が更新されました。');
     }
 
     public function delete(Request $request){
@@ -62,7 +62,7 @@ class UserController extends Controller
         $users =  User::find($request->id);
         $users->delete();
 
-        return redirect('/user');
+        return redirect('/user')->with('message', 'ユーザー情報が削除されました。');
     }
 
 
