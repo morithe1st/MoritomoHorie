@@ -291,12 +291,12 @@ return [
 
     'menu' => [
         [
-            'text' => '商品一覧',
+            'text' => '商品一覧・検索',
             'url'  => 'items',
             'icon' => 'fas fa-gamepad',
         ],
         [
-            'text' => 'ユーザー一覧',
+            'text' => 'ユーザー管理',
             'url' => 'user',
             'icon' => 'fas fa-gamepad',
         ],

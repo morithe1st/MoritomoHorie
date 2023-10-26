@@ -44,11 +44,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::prefix('items')->group(function () {
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
+    Route::get('/search', [App\Http\Controllers\ItemController::class, 'search']);
     Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
     Route::post('/store', [App\Http\Controllers\ItemController::class, 'store']);
-    Route::get('/item/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit']);
-    Route::post('/item/update', [App\Http\Controllers\ItemController::class, 'update']);
-    Route::get('/item/delete/{id}', [App\Http\Controllers\ItemController::class, 'delete']);
+    Route::get('/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit']);
+    Route::post('/update', [App\Http\Controllers\ItemController::class, 'update']);
+    Route::get('/delete/{id}', [App\Http\Controllers\ItemController::class, 'delete']);
 });
 
 // 管理者ユーザーのみ

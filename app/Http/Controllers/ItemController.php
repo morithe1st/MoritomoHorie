@@ -31,6 +31,30 @@ class ItemController extends Controller
     }
 
     /**
+     * 商品検索
+     */
+    public function search(Request $Request)
+    {
+        $search1 = $Request->input("keyword");
+        $search2 = $Request->input("category_id");
+        if($Request->has("keyword") && !empty($search2) ) {
+            $items = Item::where('name' ,'LIKE','%'.$search1.'%')->where('type' ,'=',$search2)->paginate(10);
+            } elseif($Request->has("keyword")) {
+            $items = Item::where('name' ,'LIKE','%'.$search1.'%')->paginate(10);
+            } elseif(!empty($search2)) {
+            $items = Item::where('type' ,'=',$search2)->paginate(10);
+            }else {
+            //itemsテーブルからデータを取得
+            $items = Item::orderBy('id')->paginate(10);
+            }
+        $category = ["テーブル","デスク","チェア・椅子","ソファ","収納家具","ベッド","照明器具","カーテン","ラグ・マット・カーペット","ファブリック・クッション","インテリア雑貨","その他"];
+
+        return view('item.index',[
+            'items' => $items, "category" => $category
+        ]);
+    }
+
+    /**
      * 商品登録
      */
     public function add(Request $request)
@@ -138,7 +162,7 @@ class ItemController extends Controller
 
     $item->save();
 
-    return redirect('/item/index')->with('message', '商品情報の編集が完了しました');
+    return redirect('/items')->with('message', '商品情報の編集が完了しました');
 
     }
 
@@ -148,7 +172,7 @@ class ItemController extends Controller
         $item = Item::find($request->id);
         $item->delete();
 
-        return redirect('/')->with('message', '商品が削除されました。');
+        return redirect('/items')->with('message', '商品が削除されました。');
     }
 
 
