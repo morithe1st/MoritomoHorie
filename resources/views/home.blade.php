@@ -3,11 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>ようこそ　商品管理システムへ</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>こちらはインテリア商品管理システムです。</p>
+    <p>サイドバーから行いたい作業を実施してください。</p>
 @stop
 
 @section('css')
