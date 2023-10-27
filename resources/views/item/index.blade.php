@@ -139,7 +139,7 @@
                         </tbody>
                     </table>
                     
-                    {!! $users->render() !!}
+                    {!! $items->render() !!}
                 </div>
             </div>
         </div>
