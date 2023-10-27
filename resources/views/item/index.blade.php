@@ -139,11 +139,12 @@
                         </tbody>
                     </table>
                     
-                    {!! $items->render() !!}
                 </div>
             </div>
         </div>
     </div>
+    <!-- ページネーションを表示 -->
+        {{ $items->links() }}
 @stop
 
 @section('css')
