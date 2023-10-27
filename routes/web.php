@@ -35,12 +35,12 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 // Gate設定
 // 利用者ユーザーのみ
-Route::group(['middleware' => 'auth'], function() {
-    Route::get('/home/list', [App\Http\Controllers\HomeController::class, 'list'])->name('home.list');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name("home");
-    Route::get('/home/show/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name("home.show");
+// Route::group(['middleware' => 'auth'], function() {
+//     Route::get('/home/list', [App\Http\Controllers\HomeController::class, 'list'])->name('home.list');
+//     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name("home");
+//     Route::get('/home/show/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name("home.show");
 
-});
+// });
 
 Route::prefix('items')->group(function () {
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);

@@ -138,6 +138,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                    
+                    {!! $users->render() !!}
                 </div>
             </div>
         </div>
