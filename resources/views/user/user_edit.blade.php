@@ -9,7 +9,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-10">
-<h2>「{{$user->name}}さん」の編集（現在の権限:@if($user->role === 1) 利用者 @else 管理者 @endif）</h2>    
+<h2>「{{$user->name}}」さんの編集（現在の権限:@if($user->role === 1) 利用者 @else 管理者 @endif）</h2>    
 <!-- エラーメッセージ -->
 @if ($errors->any())
 <div class="alert alert-danger">
