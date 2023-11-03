@@ -1,43 +1,39 @@
-## 商品管理システム
+# 商品管理システム
 
-### 環境構築手順
+## 概要
+本サービスは、インテリアの商品管理システムです。  
+主に商品管理とユーザー管理ができます。  
+商品管理では、商品の一覧表示、追加、
+検索、更新、削除ができます。  
+ユーザー管理では、利用登録しているユーザー情報の一覧表示、更新、削除ができます。  
+ユーザーは、管理者ユーザーと利用者ユーザーに分けられ、管理者ユーザーは、商品管理とユーザー管理にアクセスできます。利用者
+ユーザーは、商品管理にアクセスできます。
 
-* Gitクローン
-* .env.example をコピーして .env を作成
-* MySQLのデータベース作成（名前：item_management）
-* Macの場合 .env の DB_PASSWORD を root に修正（Windowsは修正不要）
+## 主な機能
+- ログイン・ログアウト機能
+- 商品管理機能
+- 商品一覧表示、新規登録、編集、削除機能
+- 商品検索機能
+- ユーザー管理機能
+- ユーザー一覧表示、編集、削除機能
 
-    ```INI
-    DB_PASSWORD=root
-    ```
+## 開発環境
+PHP 8.1.17  
+MySQL 15.1  
+Laravel 10.13.5
 
-* APP_KEY生成
+## 設計書
+[設計書ページへ](https://drive.google.com/drive/folders/1K-vhYSUCS6ep1XbrmpuoCLqWbMYt8nmz)
 
-    ```console
-    php artisan key:generate
-    ```
+## システム閲覧
+[アプリケーションページへ](https://horie-moritomo-item-management-d3903c30a804.herokuapp.com/login)
 
-* Composerインストール
+### テストアカウントの情報
 
-    ```console
-    composer install
-    ```
+- 管理者ユーザー  
+メールアドレス : horie.moritomo2@gmail.com  
+パスワード : 12341234
+- 利用者ユーザー  
+メールアドレス : horie.moritomo1@gmail.com  
+パスワード : 12341234
 
-* フロント環境構築
-
-    ```console
-    npm ci
-    npm run build
-    ```
-
-* マイグレーション
-
-    ```console
-    php artisan migrate
-    ```
-
-* 起動
-
-    ```console
-    php artisan serve
-    ```
